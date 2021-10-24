@@ -1,0 +1,22 @@
+<!-- POR FAVOR LEER LA NOTA EN perfil_base.html -->
+
+{% extends "/base/perfil_base.html" %}
+
+<!-- Agregamos el título de la barra laterial principal -->
+{% block titulo %}
+    <h2>Piloto</h2>
+{% endblock titulo %}
+
+<!-- Lista de la barra lateral principal -->
+{% block lista %}
+    <li><a href="index">Inicio</a></li>
+    <li><a href="piloto_vuelos_asignados">Vuelos Asignados</a></li>
+    <li><a href="piloto_editar_datos">Editar Datos</a></li>
+{% endblock lista %}
+
+<!-- Aquí, para poder usar una plantilla dentro de otra plantilla, se coloca
+otro bloque -->
+{% block contenido %}
+    {% block contenido_principal %}
+    {% endblock contenido_principal %}
+{% endblock contenido %}

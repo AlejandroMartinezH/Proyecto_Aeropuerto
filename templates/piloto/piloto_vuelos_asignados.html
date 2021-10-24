@@ -1,0 +1,26 @@
+{% extends "base/pilotos_base.html" %}
+
+<!-- Como extiende de la plantilla piloto, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <section class="form-register">
+        <center>
+            <h4>VUELOS ASIGNADOS</h4>
+            <br>
+        </center>
+        <label for="nombre">Nombre del Piloto:
+            <input class="controls" type="text" name="nombre" id="nombre">
+        </label>
+        <label for="identificacion">identificación Piloto:
+            <input class="controls" type="number" name="identificacion" id="identificacion">
+        </label>
+        <label for="avion">Avión Asignado:
+            <input class="controls" type="text" name="avion" id="avion">
+        </label>
+        <label for="origen">Origen:
+            <input class="controls" type="text" name="origen" id="origen">
+        </label>
+        <label for="destino">Destino:
+            <input class="controls" type="text" name="destino" id="destino">
+        </label>
+    </section>
+{% endblock contenido_principal %}

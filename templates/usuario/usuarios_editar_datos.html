@@ -1,0 +1,47 @@
+{% extends "base/usuarios_base.html" %}
+
+<!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <section class="form-register">
+        <center>
+            <h4>Información Personal</h4>
+            <br>
+        </center>
+        <label for="nombre">Nombre:
+            <input class="controls" type="text" name="nombre" id="nombre">
+        </label>
+            <label for="correo">Correo:
+            <input class="controls" type="email" name="correo" id="correo">
+        </label>
+        <label for="identificacion">Número de Identificación:
+            <input class="controls" type="number" name="identificacion" id="identificacion">
+        </label>
+        <label for="telefono">Teléfono:
+            <input class="controls" type="number" name="telefono" id="telefono">
+        </label>
+        <label for="direccion">Dirección:
+            <input class="controls" type="text" name="direccion" id="direccion">
+        </label>
+        <label for="nacimiento">Fecha de Nacimiento:
+            <input class="controls" type="date" name="nacimiento" id="nacimiento" placeholder="Fecha de Nacimiento">
+        </label>
+        <input class="botons" type="submit" value="Editar">
+        <input class="botons" type="submit" value="Guardar">
+    </section>
+    <section class="form-register">
+        <center>
+            <h4>Cambio de contraseña</h4>
+            <br>
+        </center>
+        <label for="contraseña_actual">Contraseña Actual:
+            <input class="controls" type="text" name="contraseña_actual" id="contraseña_actual">
+        </label>
+        <label for="nueva_contraseña">Nueva Contraseña:
+            <input class="controls" type="text" name="nueva_contraseña" id="nueva_contraseña">
+        </label>
+        <label for="confirmar_nueva_contraseña">Confirmar Nueva Contraseña:
+            <input class="controls" type="text" name="confirmar_nueva_contraseña" id="confirmar_nueva_contraseña">
+        </label>
+        <input class="botons" type="submit" value="Cambiar">
+    </section>
+{% endblock contenido_principal %}

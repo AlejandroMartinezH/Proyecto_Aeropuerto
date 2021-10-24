@@ -1,0 +1,17 @@
+{% extends "base/usuarios_base.html" %}
+
+<!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <div style="background-image: url('../img/fondo5.jpg');">
+    <section class="form-register">
+        <center>
+            <h4>Realiza tu Chek-in</h4>
+            <br>
+        </center>
+        <h4>Código de Reserva</h4>
+        <input class="controls" type="text" name="codigo" id="codigo" placeholder="Ingrese su Código">
+        <p> Ejemplo: VBCDGG</p><br>
+        <h4>Apellido del pasajero</h4>
+        <input class="controls" type="text" name="apellido" id="apellido" placeholder="Ingrese su Apellido">                <input class="botons" type="submit" value="Ingresar">
+    </section>
+{% endblock contenido_principal %}

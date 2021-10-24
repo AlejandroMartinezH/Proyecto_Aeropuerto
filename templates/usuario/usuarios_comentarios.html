@@ -1,0 +1,14 @@
+{% extends "base/usuarios_base.html" %}
+
+<!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <section class="form-register2">
+        <h1>Comentarios</h1>
+        <form action="/html/tags/html_form_tag_action.cfm" method="post">
+            <div>
+            <textarea class="form-register3" name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">Deja un comentario</textarea>
+            </div>
+            <input type="submit" value="Enviar">
+            </form>
+    </section>
+{% endblock contenido_principal %}

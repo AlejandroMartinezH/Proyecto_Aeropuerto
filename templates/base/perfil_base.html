@@ -1,0 +1,37 @@
+<!-- Para facilitar el trabajo con los archivos html y su navegabilidad, creo que sería mejor
+hacer uso de las plantillas que nos facilita flask. 
+La carpeta base es para generar todas las plantillas que necesitaremos. 
+Al parecer, algo muy interesante es el poder hacer plantillas que se basen en otras plantillas
+razón por la cuál todos los archivos en la carpeta base (salvo este claro está) extienden de 
+este mismo -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Side Navigation Bar</title>
+        <link rel="stylesheet" href="..\static\css\styles_sidebar.css">
+<!--         {% block estilo %}{% endblock estilo %} -->
+        <link rel="stylesheet" href="..\static\css\style2.css" type="text/css">
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+                <div class="sidebar">
+                    {% block titulo %}{% endblock titulo %}
+                    <ul id = "list">
+                        {% block lista %}{% endblock lista %}
+                    </ul>
+                    <div class="bar">
+                        <a href="login">Cerrar Sesión</a>
+                    </div>
+
+                </div>
+                <div class="main_content">
+                    {% block contenido %}
+                    {% endblock contenido %}
+                </div>
+        </div>
+    </body>
+</html>

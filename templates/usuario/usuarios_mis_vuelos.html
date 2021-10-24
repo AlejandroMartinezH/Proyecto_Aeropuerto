@@ -1,0 +1,38 @@
+{% extends "base/usuarios_base.html" %}
+
+<!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+<div class="info">
+    <div>
+        <center>
+            <h1>VUELOS</h1>
+        </center>
+        <section class="form-codigo">
+            <br>
+            <h4>Código de Vuelo</h4>
+            <input class="controls" type="text" name="codigovuelo" id="codigovuelo" placeholder="Ingrese su Código de Vuelo">
+            <p> Ejemplo: VBCDGG</p>
+            <input class="botons" type="submit" value="Ingresar">
+            <br>
+        </section>
+        <section class="form-vuelo">
+            <h4>Información de mi Vuelo</h4>
+            <label for="codigo">Código:
+                <input class="controls" type="text" name="codigo" id="codigo">
+            </label>
+            <label for="avion">Avión:
+                <input class="controls" type="text" name="avion" id="avion">
+            </label>
+            <label for="piloto">Piloto:
+                <input class="controls" type="text" name="piloto" id="piloto">
+            </label>
+            <label for="capacidad">Capacidad:
+                <input class="controls" type="text" name="capacidad" id="capacidad">
+            </label>
+            <label for="estado">Estado:
+                <input class="controls" type="text" name="estado" id="estado">
+            </label>
+        </section>
+    </div>
+</div>
+{% endblock contenido_principal %}

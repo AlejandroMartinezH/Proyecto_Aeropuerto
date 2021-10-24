@@ -1,0 +1,47 @@
+{% extends "base/usuarios_base.html" %}
+
+<!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <section class="form-reserva">
+        <form action="">
+            <label for="origen">Origen:
+                <input list="ciudades" type="text" id="origen" name="origen"/>
+                <datalist id="ciudades">
+                    <option value="Bogotá, Bogotá D.C., Colombia"></option>
+                    <option value="Medellín, Antioquia, Colombia"></option>
+                    <option value="Cali, Valle del Cauca, Colombia"></option>
+                    <option value="Barranquilla, Atlántico, Colombia"></option>
+                    <option value="Cartagena de Indias, Bolívar, Colombia"></option>
+                    <option value="Cúcuta, Norte de Santander, Colombia"></option>
+                    <option value="Santa Marta, Magdalena, Colombiasan"></option>
+                    <option value="San Andrés, Providencia y Santa Catalina, Archipiélago de San Andrés, Colombia"></option>
+                    <option value="Riohacha, La Guajira, Colombia"></option>
+                    <option value="Leticia, Amazonas, Colombia"></option>
+                </datalist>
+            </label>
+            <label for="destino">Destino:
+                <input list="ciudades" type="text" id="destino" name="destino"/>
+                <datalist id="ciudades">
+                    <option value="Bogotá, Bogotá D.C., Colombia"></option>
+                    <option value="Medellín, Antioquia, Colombia"></option>
+                    <option value="Cali, Valle del Cauca, Colombia"></option>
+                    <option value="Barranquilla, Atlántico, Colombia"></option>
+                    <option value="Cartagena de Indias, Bolívar, Colombia"></option>
+                    <option value="Cúcuta, Norte de Santander, Colombia"></option>
+                    <option value="Santa Marta, Magdalena, Colombiasan"></option>
+                    <option value="San Andrés, Providencia y Santa Catalina, Archipiélago de San Andrés, Colombia"></option>
+                    <option value="Riohacha, La Guajira, Colombia"></option>
+                    <option value="Leticia, Amazonas, Colombia"></option>
+                </datalist>
+            </label>
+            <label for="ida">Ida:
+                <input type="date" id="ida" name="ida"/>
+            </label>
+            <label for="regreso">Regreso
+                <input type="date" id="regreso" name="regreso"/>
+            </label>
+            <input class="botons" type="submit" value="Buscar"/>
+            <input class="botons" type="submit" value="Reservar"/>
+        </form>
+    </section>
+{% endblock contenido_principal %}

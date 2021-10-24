@@ -1,0 +1,31 @@
+{% extends "base/pilotos_base.html" %}
+
+<!-- Como extiende de la plantilla piloto, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <section class="form-register">
+        <center>
+            <h4>Información Personal</h4>
+            <br>
+        </center>
+        <label for="identificacion">Identificación:
+            <input class="controls" type="number" name="identificacion" id="identificacion">
+        </label>
+        <label for="nombre">Nombre:
+            <input class="controls" type="text" name="nombre" id="nombre">
+        </label>
+        <label for="edad">Edad:
+            <input class="controls" type="number" name="edad" id="edad">
+        </label>
+        <label for="telefono">Teléfono:
+            <input class="controls" type="number" name="telefono" id="telefono">
+        </label>
+        <label for="direccion">Dirección:
+            <input class="controls" type="text" name="direccion" id="direccion">
+        </label>
+        <label for="correo">Correo:
+            <input class="controls" type="email" name="correo" id="correo">
+        </label>
+        <input class="botons" type="submit" value="Editar">
+        <input class="botons" type="submit" value="Guardar">
+    </section>
+{% endblock contenido_principal %}

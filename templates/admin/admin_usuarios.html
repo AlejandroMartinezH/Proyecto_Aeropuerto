@@ -1,0 +1,20 @@
+{% extends "base/admin_base.html" %}
+
+<!-- Como extiende de la plantilla admin, solo se debe colocar código dentro del bloque -->
+{% block contenido_principal %}
+    <section class="form-register">
+        <h4>Usuarios</h4>  
+
+        <label for="vuelo">Número de Vuelo:</label>
+        <input class="controls" type="text" name="vuelo" id="vuelo">
+
+        <input class="botons" type="submit" value="Buscar">
+
+        <label for="nombre">Nombre:</label>
+        <input class="controls" type="text" name="nombre" id="nombre">
+
+        <input class="botons" type="submit" value="Editar">
+
+        <input class="botons" type="submit" value="Guardar">
+    </section> 
+{% endblock contenido_principal %}
