@@ -2,7 +2,18 @@
 
 <!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
 {% block contenido_principal %}
-    <div style="background-image: url('../img/fondo5.jpg');">
+
+    <!-- Por facilidad, aquí colocamos el fondo que necesitamos. -->
+    <style>
+        body {
+            background-image: url(../static/img/fondo3.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+    <!-- De aquí en adelante va todo el contenido de la página -->
+    <div class="checkin">
     <section class="form-register">
         <center>
             <h4>Realiza tu Chek-in</h4>

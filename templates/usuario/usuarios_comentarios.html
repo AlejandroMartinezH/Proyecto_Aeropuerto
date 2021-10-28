@@ -2,6 +2,17 @@
 
 <!-- Como extiende de la plantilla usuario, solo se debe colocar código dentro del bloque -->
 {% block contenido_principal %}
+
+    <!-- Por facilidad, aquí colocamos el fondo que necesitamos. -->
+    <style>
+        body {
+            background-image: url(../static/img/fondo4.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+    <!-- De aquí en adelante va todo el contenido de la página -->
     <section class="form-register2">
         <h1>Comentarios</h1>
         <form action="/html/tags/html_form_tag_action.cfm" method="post">
