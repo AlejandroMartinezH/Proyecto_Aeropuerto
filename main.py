@@ -1,6 +1,35 @@
-from flask import Flask, render_template, request, flash
+import os
+
+from flask import Flask
+from flask import render_template
+from flask import request
+from flask import flash
+from flask import redirect, url_for
+from flask import jsonify
+from flask import session
+from flask import g
+from flask import send_file
+from flask import make_response
+import functools
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from utils import isUsernameValid, isEmailValid, isPasswordValid
+import yagmail as yagmail
+from forms import Formulario_Usuario
+from db import get_db, close_db
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
+
+# Usuario requerido:
+# Es como si se estuviese llamando directamente a la función interna
+''' def login_required(view):
+    @functools.wraps( view ) # toma una función utilizada en un decorador y añadir la funcionalidad de copiar el nombre de la función.
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect( url_for( 'login' ) )
+        return view( **kwargs )
+    return wrapped_view '''
 
 @app.route('/index') #Esto lo cree para poder acceder a él desde las otras pestañas.
 def index():
@@ -58,9 +87,9 @@ def admin_usuarios():
 def admin_vuelos():
     return render_template("admin/admin_vuelos.html")
 
-@app.route('/login')
+''' @app.route('/login')
 def login():
-    return render_template("login.html")
+    return render_template("login.html") '''
 
 @app.route('/registro')
 def registro():
@@ -73,5 +102,32 @@ def terminos_y_condiciones():
 @app.route('/recuperacion_contrasena')
 def recuperacion_contrasena():
     return render_template("recuperacion_contrasena.html")
+
+@app.route('/login')
+def login():
+    form = Formulario_Usuario()
+    return render_template("login.html", form=form)
+
+
+
+
+''' @app.before_request
+def cargar_usuario_registsrado():
+    print("before_request")
+    id_usuario = session.get( 'id_usuario' )
+    print("type(id_usuario):", type(id_usuario))
+    print("id_usuario:", id_usuario)
+    if id_usuario is None: 
+        g.user = None
+    else:
+        g.user = get_db().execute(
+            'SELECT * FROM Usuarios WHERE id = ?'
+            ,(id_usuario,)
+        ).fetchone()
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect( 'login' ) '''
 
 

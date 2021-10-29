@@ -11,12 +11,21 @@
     <body>
         <section class="form-register">
             <h4>Inicio de Sesión</h4>
-            <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+            <form action="" method="post">
+                {{form.usuario(size=30, class_="controls", placeholder="Ingrese su Correo/Usuario")}}
+                {{form.password(size=30, class_="controls", placeholder="Ingrese su Contraseña")}}
+                {{form.enviar(class_="botons")}}
+            </form>
+            <p><a href="recuperacion_contrasena">¿Olvidaste tu Contraseña?</a></p>
+            <p><a href="registro"> Crea una Cuenta</a></p>
+            <p><a href="index">Regresar</a></p>
+<!--             <h4>Inicio de Sesión</h4>
+            <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo/Usuario">
             <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
             <input class="botons" type="submit" value="Ingresar">
             <p><a href="recuperacion_contrasena">¿Olvidaste tu Contraseña?</a></p>
             <p><a href="registro"> Crea una Cuenta</a></p>
-            <p><a href="index">Regresar</a></p>
+            <p><a href="index">Regresar</a></p> -->
         </section>
     </body>
 </html>
