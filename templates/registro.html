@@ -11,7 +11,17 @@
     <body>
         <section class="form-register">
             <h4>Datos Personales</h4>
-            <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+            {{form.nombre(size=30, class_="controls", placeholder="Ingrese su Nombre Completo")}}
+            {{form.usuario(size=30, class_="controls", placeholder="Ingrese su Correo")}}
+            {{form.id_number(size=30, class_="controls", placeholder="Ingrese su ID")}}
+            {{form.telefono(size=30, class_="controls", placeholder="Ingrese su Teléfono")}}
+            {{form.direccion(size=30, class_="controls", placeholder="Ingrese su Dirección")}}
+            {{form.nacimiento.label}}
+            {{form.nacimiento(size=30, class_="controls")}}
+            {{form.password(size=30, class_="controls", placeholder="Ingrese su Contraseña")}}
+            {{form.confirm(size=30, class_="controls", placeholder="Repita su Contraseña")}}
+            {{form.enviar(class_="botons")}}
+<!--             <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
             <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
             <input class="controls" type="text" name="DNI" id="DNI" placeholder="Ingrese su # de identificación">
             <input class="controls" type="text" name="telefono" id="telefono" placeholder="Ingrese su teléfono">
@@ -20,7 +30,7 @@
             <input class="controls" type="date" name="nacimiento" id="nacimiento" placeholder="Fecha de Nacimiento">
             <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
             <input class="controls" type="password" name="confirm_password" id="confirm_password" placeholder="Confirme su Contraseña">
-            <input class="botons" type="submit" value="Registrar"  onclick="alert('Por favor, revisa tu correo') ">
+            <input class="botons" type="submit" value="Registrar"  onclick="alert('Por favor, revisa tu correo') "> -->
             <p><a href="terminos_y_condiciones">Terminos y Condiciones</a></p>
             <p><a href="login">Ya poseo una Cuenta</a></p>
             <p><a href="index">Regresar</a></p>

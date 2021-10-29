@@ -15,7 +15,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from utils import isUsernameValid, isEmailValid, isPasswordValid
 import yagmail as yagmail
-from forms import Formulario_Usuario
+from forms import Formulario_Usuario, Formulario_registro
 from db import get_db, close_db
 
 app = Flask(__name__)
@@ -93,7 +93,8 @@ def login():
 
 @app.route('/registro')
 def registro():
-    return render_template("registro.html")
+    form = Formulario_registro()
+    return render_template("registro.html", form=form)
 
 @app.route('/terminos_y_condiciones')
 def terminos_y_condiciones():
