@@ -136,7 +136,7 @@ def login():
         else:
             # No hay error:  
             user = db.execute(
-                'SELECT ID_User, Email_User, Password_User FROM USER WHERE Email_User = ?'
+                'SELECT ID_User, Email_User, Password_User, Type_User FROM USER WHERE Email_User = ?'
                 ,
                 (usuario,)
             ).fetchone()             
@@ -151,8 +151,13 @@ def login():
                     return render_template("login.html", form=form, titulo='Inicio de sesión')
                 else:
                     session.clear()  
-                    session['id_usuario'] = user[0]    
-                    return redirect( url_for( 'check_in' ) )
+                    session['id_usuario'] = user[0]
+                    if (user[3] == "Admin"):    
+                        return redirect( url_for( 'admin_usuarios' ) )
+                    elif (user[3] == "Piloto"):
+                        return redirect( url_for( 'piloto_comentarios_vuelo' ) )
+                    else:
+                        return redirect( url_for( 'check_in' ) )
     #Entró por GET
     return render_template("login.html", form=form, titulo='Inicio de sesión')
 
@@ -171,6 +176,7 @@ def registro():
         nacimiento = request.form['nacimiento']
         password = request.form['password1']
         password2 = request.form['confirm']
+        type_usuario = "Usuario"
         error = None
         db = get_db()
         
@@ -198,9 +204,9 @@ def registro():
             # Seguro:
             password_cifrado = generate_password_hash(password)                
             db.execute(
-                'INSERT INTO USER (Name_User,Telephone_User,Address_User,Email_User,DateBirth_User,Password_User, DNI_User) VALUES (?,?,?,?,?,?,?) '
+                'INSERT INTO USER (Name_User,Telephone_User,Address_User,Email_User,DateBirth_User,Password_User, DNI_User, Type_User) VALUES (?,?,?,?,?,?,?,?) '
                 ,
-                (nombre,telefono,direccion,email,nacimiento,password_cifrado,id_number)
+                (nombre,telefono,direccion,email,nacimiento,password_cifrado,id_number,type_usuario)
             )
             db.commit()
 

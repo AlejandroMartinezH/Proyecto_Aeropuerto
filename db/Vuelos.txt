@@ -1,53 +1,45 @@
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "USER" (
-	"ID_User"	INTEGER NOT NULL,
-	"Name_User"	TEXT NOT NULL,
-	"Age_User"	INTEGER NOT NULL,
-	"Telephone_User"	INTEGER NOT NULL,
-	"Address_User"	TEXT NOT NULL,
-	"Email_User"	TEXT NOT NULL,
-	"DateBirth_User"	DATETIME NOT NULL,
-	"Password_User"	TEXT NOT NULL,
-	PRIMARY KEY("ID_User")
+PRAGMA foreign_keys = 0;
+
+CREATE TABLE sqlitestudio_temp_table AS SELECT *
+                                          FROM USER;
+
+DROP TABLE USER;
+
+CREATE TABLE USER (
+    ID_User        INTEGER  NOT NULL,
+    Name_User      TEXT     NOT NULL,
+    Telephone_User INTEGER  NOT NULL,
+    Address_User   TEXT     NOT NULL,
+    Email_User     TEXT     NOT NULL,
+    DateBirth_User DATETIME NOT NULL,
+    Password_User  TEXT     NOT NULL,
+    DNI_User       INTEGER  NOT NULL,
+    Type_User	   TEXT     NOT NULL,
+    PRIMARY KEY (
+        ID_User
+    )
 );
-CREATE TABLE IF NOT EXISTS "AIRMAN" (
-	"ID_Airman"	INTEGER NOT NULL,
-	"Name_Airman"	TEXT NOT NULL,
-	"Age_Airman"	INTEGER NOT NULL,
-	"Telephone_Airman"	INTEGER NOT NULL,
-	"Address_Airman"	TEXT NOT NULL,
-	"Email_Airman"	TEXT NOT NULL,
-	"Password_Airman"	TEXT NOT NULL,
-	PRIMARY KEY("ID_Airman")
-);
-CREATE TABLE IF NOT EXISTS "PLANE" (
-	"ID_Plane"	TEXT NOT NULL,
-	"Capacity"	INTEGER NOT NULL,
-	PRIMARY KEY("ID_Plane")
-);
-CREATE TABLE IF NOT EXISTS "FLIGHT" (
-	"ID_Flight"	TEXT NOT NULL,
-	"ID_Plane"	TEXT NOT NULL,
-	"Status"	TEXT NOT NULL,
-	"Origin"	TEXT NOT NULL,
-	"Destiny"	TEXT NOT NULL,
-	FOREIGN KEY("ID_Plane") REFERENCES "PLANE"("ID_Plane"),
-	PRIMARY KEY("ID_Flight")
-);
-CREATE TABLE IF NOT EXISTS "USER_FLIGHT" (
-	"ID"	INTEGER NOT NULL,
-	"ID_User"	INTEGER NOT NULL,
-	"ID_Flight"	TEXT NOT NULL,
-	FOREIGN KEY("ID_User") REFERENCES "USER"("ID_User"),
-	FOREIGN KEY("ID_Flight") REFERENCES "FLIGHT"("ID_Flight"),
-	PRIMARY KEY("ID" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "AIRMAN_FLIGHT" (
-	"ID"	INTEGER NOT NULL,
-	"ID_Airman"	INTEGER NOT NULL,
-	"ID_Flight"	TEXT NOT NULL,
-	FOREIGN KEY("ID_Airman") REFERENCES "AIRMAN"("ID_Airman"),
-	FOREIGN KEY("ID_Flight") REFERENCES "FLIGHT"("ID_Flight"),
-	PRIMARY KEY("ID" AUTOINCREMENT)
-);
-COMMIT;
+
+INSERT INTO USER (
+                     ID_User,
+                     Name_User,
+                     Telephone_User,
+                     Address_User,
+                     Email_User,
+                     DateBirth_User,
+                     Password_User,
+                     DNI_User
+                 )
+                 SELECT ID_User,
+                        Name_User,
+                        Telephone_User,
+                        Address_User,
+                        Email_User,
+                        DateBirth_User,
+                        Password_User,
+                        DNI_User
+                   FROM sqlitestudio_temp_table;
+
+DROP TABLE sqlitestudio_temp_table;
+
+PRAGMA foreign_keys = 1;
