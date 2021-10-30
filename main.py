@@ -40,61 +40,64 @@ def index2():
     return render_template("index.html")
 
 @app.route('/check_in')
+@login_required
 def check_in():
     return render_template("usuario/usuarios_check_in.html")
 
 @app.route('/usuarios_editar_datos')
+@login_required
 def usuarios_editar_datos():
     return render_template("usuario/usuarios_editar_datos.html")
 
 @app.route('/usuarios_mis_vuelos')
+@login_required
 def usuarios_mis_vuelos():
     return render_template("usuario/usuarios_mis_vuelos.html")
 
 @app.route('/usuarios_reserva')
+@login_required
 def usuarios_reserva():
     return render_template("usuario/usuarios_reserva.html")
 
 @app.route('/usuarios_comentarios')
+@login_required
 def usuarios_comentarios():
     return render_template("usuario/usuarios_comentarios.html")
 
 @app.route('/piloto_comentarios_vuelo')
+@login_required
 def piloto_comentarios_vuelo():
     return render_template("piloto/piloto_comentarios_vuelo.html")
 
 @app.route('/piloto_editar_datos')
+@login_required
 def piloto_editar_datos():
     return render_template("piloto/piloto_editar_datos.html")
 
 @app.route('/piloto_vuelos_asignados')
+@login_required
 def piloto_vuelos_asignados():
     return render_template("piloto/piloto_vuelos_asignados.html")
 
 @app.route('/admin_aviones')
+@login_required
 def admin_aviones():
     return render_template("admin/admin_aviones.html")
 
 @app.route('/admin_pilotos')
+@login_required
 def admin_pilotos():
     return render_template("admin/admin_pilotos.html")
 
 @app.route('/admin_usuarios')
+@login_required
 def admin_usuarios():
     return render_template("admin/admin_usuarios.html")
 
 @app.route('/admin_vuelos')
+@login_required
 def admin_vuelos():
     return render_template("admin/admin_vuelos.html")
-
-''' @app.route('/login')
-def login():
-    return render_template("login.html") '''
-
-''' @app.route('/registro')
-def registro():
-    form = Formulario_registro()
-    return render_template("registro.html", form=form) '''
 
 @app.route('/terminos_y_condiciones')
 def terminos_y_condiciones():
@@ -231,6 +234,10 @@ def cargar_usuario_registrado():
             (id_usuario,)
         ).fetchone()
     print('g.user:', g.user)
+
+############ ---- SEGURIDAD ---- ################
+if __name__ == '__main__':
+    app.run( host='127.0.0.1', port=443, ssl_context=('micertificado.pem', 'llaveprivada.pem') )
 
 
 
