@@ -2,7 +2,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, BooleanFiel
 from wtforms.fields.html5 import EmailField, IntegerField, DateField
 import email_validator
 
-class Formulario_Usuario(Form):
+class Formulario_Login(Form):
     usuario = StringField('Usuario', 
     [ 
         validators.DataRequired(message='Dato requerido.'), 
@@ -62,3 +62,18 @@ class Formulario_registro(Form):
     ])
 
     enviar = SubmitField('Registrar')
+
+class Formulario_Enviar_Mensaje(Form):
+    para = StringField( 'Para', 
+    [        
+        validators.DataRequired(message='Dato requerido.')
+    ])
+    asunto = StringField( 'Asunto', 
+    [        
+        validators.DataRequired(message='Dato requerido.')
+    ])
+    mensaje = TextAreaField( 'Mensaje' , 
+    [        
+        validators.DataRequired(message='Dato requerido.')
+    ])   
+    enviar = SubmitField( 'Enviar' )

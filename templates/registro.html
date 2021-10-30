@@ -21,11 +21,22 @@
             {{form.nacimiento(size=30, class_="controls")}}
             {{form.password1(size=30, class_="controls", placeholder="Ingrese su Contraseña")}}
             {{form.confirm(size=30, class_="controls", placeholder="Repita su Contraseña")}}
-            {{form.enviar()}}
+            {{form.enviar(class_="botons")}}
             </form>
             <p><a href="terminos_y_condiciones">Terminos y Condiciones</a></p>
             <p><a href="login">Ya poseo una Cuenta</a></p>
             <p><a href="index">Regresar</a></p>
         </section>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </body>
 </html>

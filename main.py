@@ -15,7 +15,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from utils import isUsernameValid, isEmailValid, isPasswordValid
 import yagmail as yagmail
-from forms import Formulario_Usuario, Formulario_registro
+from forms import Formulario_Login, Formulario_registro
 from db import get_db, close_db
 
 app = Flask(__name__)
@@ -112,50 +112,45 @@ def login():
 
 ##################### ---- LOGIN ---- #########################
 @app.route('/login', methods=['GET', 'POST'])
-def login(): 
-    form = Formulario_Usuario( request.form )
-    if request.method == 'POST': # and form.validate():  
-        usuario = request.form['usuario']
-        password = request.form['password']
+def login():
+    form = Formulario_Login(request.form)
+    if request.method == 'POST': 
+        usuario = form.usuario.data
+        password = form.password.data
         error = None
         db = get_db()
-        
+
         if not usuario:
             error = "Usuario requerido."
-            flash( error )
+            flash(error)
         if not password:
             error = "Contraseña requerida."
-            flash( error )
-
+            flash(error)
+        
         if error is not None:
-            # SI HAY ERROR:
+            # Si hay error:
             return render_template("login.html", form=form, titulo='Inicio de sesión')
         else:
-            # No hay error:
+            # No hay error:  
             user = db.execute(
-                'SELECT id, nombre, usuario, correo, contrasena FROM Usuarios WHERE usuario = ?'
+                'SELECT ID_User, Email_User, Password_User FROM USER WHERE Email_User = ?'
                 ,
                 (usuario,)
-            ).fetchone()
-            print(user)
-            print(user[4])
+            ).fetchone()             
+            print(user)            
             if user is None:
                 error = "Usuario no existe."
-                flash( error )
+                flash(error)
             else:
-                usuario_valido = check_password_hash(user[4],password)
-                print(usuario_valido)
+                usuario_valido = check_password_hash(user[2],password)                
                 if not usuario_valido:
-                    error = "Contraseña no es correcta."
-                    flash( error )                 
+                    flash('Usuario y/o contraseña no son válidos.')
                     return render_template("login.html", form=form, titulo='Inicio de sesión')
-                else:       
-                    session.clear()
-                    session['id_usuario'] = user[0]
-                    response = make_response( redirect( url_for('send') ) )
-                    response.set_cookie( 'username', usuario )
-                    return response 
-    # GET:
+                else:
+                    session.clear()  
+                    session['id_usuario'] = user[0]    
+                    return redirect( url_for( 'check_in' ) )
+    #Entró por GET
     return render_template("login.html", form=form, titulo='Inicio de sesión')
 
 
@@ -216,25 +211,26 @@ def registro():
     #    flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
     #    return render_template("registro.html")
 
-
-''' @app.before_request
-def cargar_usuario_registrado():
-    print("before_request")
-    id_usuario = session.get( 'id_usuario' )
-    print("type(id_usuario):", type(id_usuario))
-    print("id_usuario:", id_usuario)
-    if id_usuario is None: 
-        g.user = None
-    else:
-        g.user = get_db().execute(
-            'SELECT * FROM USER WHERE id = ?'
-            ,(id_usuario,)
-        ).fetchone() '''
-
+################# ---- LOGOUT ---- ###############
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect( 'login' )
+
+################ ---- BEFORE REQUEST ---- ##############
+@app.before_request
+def cargar_usuario_registrado():
+    print("Entró en la before_request.")
+    id_usuario = session.get('id_usuario')
+    if id_usuario is None:
+        g.user = None
+    else:        
+        g.user = get_db().execute(
+            'SELECT ID_User, Email_User, Password_User FROM USER WHERE ID_User = ?'
+            ,
+            (id_usuario,)
+        ).fetchone()
+    print('g.user:', g.user)
 
 
 

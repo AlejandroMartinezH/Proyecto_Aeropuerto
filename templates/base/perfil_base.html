@@ -15,23 +15,34 @@ este mismo -->
         <link rel="stylesheet" href="..\static\css\style2.css" type="text/css">
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     </head>
+
     
     <body>
         <div class="wrapper">
-                <div class="sidebar">
-                    {% block titulo %}{% endblock titulo %}
-                    <ul id = "list">
-                        {% block lista %}{% endblock lista %}
-                    </ul>
-                    <div class="bar">
-                        <a href="logout">Cerrar Sesión</a>
-                    </div>
+            <div class="sidebar">
+                {% block titulo %}{% endblock titulo %}
+                <ul id = "list">
+                    {% block lista %}{% endblock lista %}
+                </ul>
+                <div class="bar">
+                    <a href="logout">Cerrar Sesión</a>
+                </div>
+            </div>
+            <div class="main_content">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
 
-                </div>
-                <div class="main_content">
-                    {% block contenido %}
-                    {% endblock contenido %}
-                </div>
+                {% block contenido %}
+                {% endblock contenido %}
+            </div>
         </div>
     </body>
 </html>
