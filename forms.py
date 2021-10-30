@@ -16,43 +16,49 @@ class Formulario_Usuario(Form):
     enviar = SubmitField('Ingresar')
 
 
+
 class Formulario_registro(Form):
-    nombre = StringField('Nombre', 
+    nombre = StringField('nombre', 
     [ 
         validators.DataRequired(message='Dato requerido.'), 
     ] )
 
-    usuario = EmailField('Usuario', 
+    usuario = EmailField('usuario', 
     [validators.DataRequired(message='Dato requerido.'), 
     validators.Email()])
 
-    id_number = IntegerField('ID', 
+    id_number = IntegerField('id_number', 
     [ 
         validators.DataRequired(message='Dato requerido.'), 
     ] )
 
-    telefono = IntegerField('Teléfono', 
+    telefono = IntegerField('telefono', 
     [ 
         validators.DataRequired(message='Dato requerido.'), 
     ] )
 
-    direccion = StringField('Dirección',
+    direccion = StringField('direccion',
     [ 
         validators.DataRequired(message='Dato requerido.'), 
     ] )
 
-    nacimiento = DateField('Fecha Nacimiento', 
+    nacimiento = DateField('nacimiento', 
     [ 
         validators.DataRequired(message='Dato requerido.'), 
-    ], format='%Y-%m-%d' )
+    ])
 
-    password = PasswordField('Contraseña',
+    password1 = PasswordField('password1',
     [ 
         validators.DataRequired(message='Dato requerido.'), 
-        validators.Length(min=3,max=25, message='Debe tener entre 8 y 25 caracteres.'),
+        validators.Length(min=8,max=25, message='Debe tener entre 8 y 25 caracteres.'),
         validators.EqualTo('confirm', message='Las Contraseñas deben coincidir')
     ])
     
-    confirm = PasswordField('Confirmar Contraseña')
+    confirm = PasswordField('confirm',
+    [ 
+        validators.DataRequired(message='Dato requerido.'), 
+        validators.Length(min=8,max=25, message='Debe tener entre 8 y 25 caracteres.'),
+        validators.EqualTo('password1', message='Las Contraseñas deben coincidir')
+    ])
 
     enviar = SubmitField('Registrar')
